@@ -34,20 +34,11 @@ This data was combined into a data frame, where each column represents one featu
 4.	Comparison of results
 
 ## ELBOW METHOD
-![PCA](https://github.com/balajiabcd/Urban_sound_classification/blob/main/static/images/PCA.jpg)
+![PCA](https://github.com/balajiabcd/Urban_sound_classification/blob/main/static/images/PCA.jpg)  
 After the preprocessing, to reduce correlated columns from the data, PCA dimensionality reduction method was implemented in this work. This feature selection using Principal Component Analysis (PCA) calculates the explained variance ratio for different numbers of components (ranging from 1 to 40) and plots the results in an "Elbow Method" diagram. The elbow point on the plot helps identify the optimal number of components to retain for reducing the dataset's dimensionality while preserving relevant information. In this work, 20 components were chosen.
 KNN MODEL METRICS EVALUATION
  
-K-NN	Eulidean	Manhattan	Chebyshev	Cosine 	Hamming 
-K=1	93.88%	94.10%	89.47%	94.68%	11.28%
-K=2	91.13%	91.24%	84.77%	91.64%	11. 28%
-K=3	91.01%	91.01%	85.23%	91.76%	11. 28%
-K=4	90.15%	90.38%	83.86%	91.01%	10.59%
-K=5	89.24%	89.07%	82.71%	90.56%	10.36%
-K=6	88.09%	88.90%	81.91%	89.70%	10.59%
-K=7	87.18%	87.52%	81.11%	89.12%	10.59%
-K=8	86.61%	86.89%	80.94%	88.49%	10.59%
-K=9	85.92%	85.92%	80.14%	87.81%	11.22%
+![Knn_table](https://github.com/balajiabcd/Urban_sound_classification/blob/main/static/images/knn_model_evaluation.png)  
 
 In this evaluation of the metrices, the percentage results of Cosine proved to be the appropriate metrics which is essential to provide a comprehensive assessment of the model's effectiveness. And for KNN, we get the maximum accuracy when the number of neighbours is 1, however we concluded that it could be because of overfitting of the dataset. The maximum efficiency was obtained when the number of neighbours is 3, with an accuracy rate of 91.76% which is in decreasing order with increase in number of neighbours.  
 
@@ -60,7 +51,9 @@ Here, random forest gave out a higher percentage score greater than the algorith
 
 ## FINAL EVALUATION COMPARISON 
 This is a Confusion matrix for 3-NN classification model with cosine metrics in comparison with Random Forest Model. KNN model achieved an accuracy of 91.76%, on the other hand, Random Forest Model achieved an accuracy of 90.61%.   
- 
+
+![heatmap](https://github.com/balajiabcd/Urban_sound_classification/blob/main/static/images/heatmap.jpg)
+
 We could conclude that based on the dataset, the matrices and the algorithm used in this machine learning project and the random forest model used as the baseline in comparison, KNN model proved to be much more efficient in terms of accuracy.
 
 
