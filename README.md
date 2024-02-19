@@ -34,6 +34,7 @@ This data was combined into a data frame, where each column represents one featu
 4.	Comparison of results
 
 ## ELBOW METHOD
+!(PCA)[https://github.com/balajiabcd/Urban_sound_classification/blob/main/static/images/PCA.jpg]
 After the preprocessing, to reduce correlated columns from the data, PCA dimensionality reduction method was implemented in this work. This feature selection using Principal Component Analysis (PCA) calculates the explained variance ratio for different numbers of components (ranging from 1 to 40) and plots the results in an "Elbow Method" diagram. The elbow point on the plot helps identify the optimal number of components to retain for reducing the dataset's dimensionality while preserving relevant information. In this work, 20 components were chosen.
 KNN MODEL METRICS EVALUATION
  
