@@ -1,0 +1,85 @@
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# -----------------------------
+# Jupyter / Notebooks
+# -----------------------------
+.ipynb_checkpoints
+*.ipynb~
+.notebooks_cache/
+
+# -----------------------------
+# OS / Editor
+# -----------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+.vscode/
+.idea/
+
+
+
+# ignore archive folders completely
+archive/
+archive_dataframes/
+
+# model artifacts
+models/
+*.pkl
+*.joblib
+*.h5
+*.onnx
+
+# feature dumps / cache
+*.npz
+*.npy
+*.parquet
+
+# -----------------------------
+# Reports / Figures
+# -----------------------------
+reports/
+!reports/*.md     # allow documentation
+
+# -----------------------------
+# Logs & outputs
+# -----------------------------
+logs/
+*.log
+*.out
+
+# -----------------------------
+# Virtual environments
+# ----------------------------- 
+env_sound_classification/
+.env
+.venv
+venv/
+ENV/
+env.bak/
+
+# -----------------------------
+# DVC / MLflow / Weights & Biases
+# -----------------------------
+*.dvc
+.dvc/
+mlruns/
+wandb/
+
+# -----------------------------
+# Others
+# -----------------------------
+*.zip
+*.tar
+*.gz

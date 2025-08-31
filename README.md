@@ -6,6 +6,8 @@ Noise is an unwanted sound has negative impact upon human activities. And in thi
 ## DATA SET
 This dataset consists of many audio clips with different sizes (in terms of time). Data contains a total of 10 different types (categories) of noises. All these audio files are recorded in different environments of urban regions.  
 
+https://www.kaggle.com/code/prabhavsingh/urbansound8k-classification
+
 ## ANALYSIS 
 1.	The investigation and profiling of urban noise using selected features.  
 2.	The selected features are used to perform noise classification using KNN (K-Nearest Neighbors), Random Forest, Decision Tree, Logistic Regression.  
