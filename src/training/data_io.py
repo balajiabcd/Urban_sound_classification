@@ -1,12 +1,19 @@
 from pathlib import Path
+from typing import Union
 import pandas as pd
 
-def load_archive_dataframes(folder: str) -> pd.DataFrame:
-    p = Path(folder)
-    csvs = sorted([x for x in p.iterdir() if x.suffix.lower()==".csv"])
-    if not csvs:
-        raise FileNotFoundError(f"No CSVs found in {folder}")
-    df = pd.read_csv(csvs[0])
-    for f in csvs[1:]:
-        df = pd.concat([df, pd.read_csv(f)], ignore_index=True)
-    return df
+PathLike = Union[str, Path]
+
+def save_csv(df: pd.DataFrame, path: PathLike) -> None:
+    """
+    Save a DataFrame to CSV (no index). Ensures parent dir exists.
+    """
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(p, index=False)
+
+def load_csv(path: PathLike) -> pd.DataFrame:
+    """
+    Load a CSV file into a DataFrame.
+    """
+    return pd.read_csv(path)

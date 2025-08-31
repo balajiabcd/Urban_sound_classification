@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 def test_train_pipeline_end_to_end(tmp_path):
-    from training import train as tr
+    from src.training import train as tr
     # minimal fake dataframe
     X = np.random.randn(60, 10)
     y = np.array([0]*30 + [1]*30)
