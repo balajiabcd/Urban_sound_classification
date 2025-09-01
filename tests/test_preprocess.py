@@ -1,21 +1,27 @@
-import numpy as np
 import pandas as pd
-import pytest
+import numpy as np
+from src.training import preprocess
 
-pp = pytest.importorskip("src.training.preprocess", reason="src.training.preprocess not found")
+def test_split_xy():
+    df = pd.DataFrame({
+        "file": ["a","b"],
+        "mfcc_1": [0.1,0.2],
+        "mfcc_2": [0.3,0.4],
+        "class": ["dog","cat"]
+    })
+    X,y = preprocess.split_xy(df, "class")
+    assert X.shape[1] == 2
+    assert list(y) == ["dog","cat"]
 
-def test_split_train_valid_stratified():
-    X = pd.DataFrame(np.random.randn(100, 4), columns=list("ABCD"))
-    y = pd.Series([0]*50 + [1]*50)
-    assert hasattr(pp, "split_train_valid_stratified"), "preprocess.split_train_valid_stratified missing"
-    X_tr, X_va, y_tr, y_va = pp.split_train_valid_stratified(X, y, test_size=0.2, random_state=42)
-    assert len(X_tr) + len(X_va) == len(X)
-    assert y_tr.mean() == pytest.approx(y.mean(), abs=0.1)
+def test_make_splits():
+    X = pd.DataFrame(np.random.randn(50,5))
+    y = pd.Series(["a"]*25 + ["b"]*25)
+    X_tr, X_va, X_te, y_tr, y_va, y_te = preprocess.make_splits(X,y)
+    assert len(X_tr)+len(X_va)+len(X_te) == 50
 
-def test_fit_transformers_and_apply(tmp_path):
-    X = pd.DataFrame(np.random.randn(50, 6), columns=list("ABCDEF"))
-    assert hasattr(pp, "fit_transformers"), "preprocess.fit_transformers missing"
-    assert hasattr(pp, "apply_transformers"), "preprocess.apply_transformers missing"
-    transformers = pp.fit_transformers(X)
-    X2 = pp.apply_transformers(X.copy(), **transformers)
-    assert X2.shape[0] == X.shape[0]
+def test_pca_scaler():
+    X = np.random.randn(20,10)
+    y = np.random.choice(["a","b"],20)
+    X_tr,X_va,X_te,y_tr,y_va,y_te = preprocess.make_splits(X,y)
+    Xt, Xv, Xtt, pca, sc = preprocess.fit_transform_pca_scaler(X_tr,X_va,X_te, n_components=5)
+    assert Xt.shape[1] == 5

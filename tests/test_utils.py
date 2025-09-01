@@ -1,22 +1,27 @@
 import os
-import shutil
+import numpy as np
+import pandas as pd
 import pytest
+from src.extract import utils
 
-utils = pytest.importorskip("src.extract.utils", reason="src.extract.utils not found")
+def test_get_features(tmp_path):
+    # Create a dummy wav file
+    import soundfile as sf
+    file_path = tmp_path / "test.wav"
+    sf.write(file_path, np.random.randn(8000), 8000)
 
-def test_create_folder_if_not_exists(tmp_path):
-    target = tmp_path / "nested" / "dir"
-    if target.exists():
-        shutil.rmtree(target)
-    assert hasattr(utils, "create_folder_if_not_exists"), "utils.create_folder_if_not_exists missing"
-    utils.create_folder_if_not_exists(target)
-    assert target.exists()
+    features = utils.get_features(str(file_path))
+    assert isinstance(features, list)
+    assert len(features) == 40
 
-def test_set_seed_idempotent():
-    assert hasattr(utils, "set_seed"), "utils.set_seed missing"
-    utils.set_seed(123)
-    import numpy as np, random
-    a = np.random.rand(3); b = random.random()
-    utils.set_seed(123)
-    a2 = np.random.rand(3); b2 = random.random()
-    assert (a == a2).all() and b == b2
+def test_make_dataframe(tmp_path):
+    # Dummy wav + metadata
+    import soundfile as sf
+    file_path = tmp_path / "a.wav"
+    sf.write(file_path, np.random.randn(8000), 8000)
+    class_map = {"a.wav": "dog"}
+
+    df = utils.make_dataframe(str(tmp_path), class_map)
+    assert "file_name" in df.columns
+    assert "class" in df.columns
+    assert df.iloc[0]["class"] == "dog"

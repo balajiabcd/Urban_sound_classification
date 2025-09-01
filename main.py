@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 import joblib
@@ -10,7 +11,7 @@ model = joblib.load("models/model.pkl")
 le = joblib.load("models/label_encoder.pkl")
 
 
-path = 'archive/fold1/7061-6-0-0.wav'
+path = 'sample_data/fold2/7383-3-0-1.wav'
 x = get_features(path)
 x_arr = np.array(x).reshape(1, -1)
 
@@ -19,3 +20,12 @@ x_trasnsformed = scaler.transform(pca.transform(x_arr))
 y_pred = model.predict(x_trasnsformed)
 y_pred_label = le.inverse_transform(y_pred)
 print(y_pred_label)
+
+
+filename = os.path.basename(path)
+print(filename)
+
+data = pd.read_csv("sample_data/UrbanSound8K.csv")
+data2 = data[data['slice_file_name'] == filename]
+
+print(data2['class'])

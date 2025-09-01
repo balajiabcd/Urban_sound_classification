@@ -1,26 +1,18 @@
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 
-def get_model_known_names():
-    """
-    Return a set/list of known model short-names.
-    """
-    return ["rf", "random_forest", "svc", "svm", "logreg", "knn"]
-
-def get_model(name: str):
-    """
-    Construct a sklearn model by short-name.
-    """
-    name = (name or "").lower()
-    if name in {"rf", "random_forest"}:
-        return RandomForestClassifier(n_estimators=100, random_state=0)
-    if name in {"svc", "svm"}:
-        return SVC(probability=False, random_state=0)
-    if name == "logreg":
-        return LogisticRegression(max_iter=1000, n_jobs=None)
-    if name == "knn":
-        return KNeighborsClassifier(n_neighbors=5)
-    # default
-    return RandomForestClassifier(n_estimators=100, random_state=0)
+def build_candidates(seed=42):
+    models = {}
+    # KNN sweeps
+    for metric in ["euclidean","manhattan","chebyshev","cosine","hamming"]:
+        for k in range(1,10):
+            name = f"knn_{metric}_k{k}"
+            models[name] = KNeighborsClassifier(n_neighbors=k, metric=metric)
+    # Tree / LR / RF
+    models["tree_gini_d4"] = DecisionTreeClassifier(criterion="gini", max_depth=4, random_state=seed)
+    models["logreg"] = LogisticRegression(solver="liblinear", max_iter=200)
+    models["rf_400"] = RandomForestClassifier(n_estimators=400, random_state=seed, n_jobs=-1)
+    models["rf_200"] = RandomForestClassifier(n_estimators=200, random_state=seed, n_jobs=-1)
+    return models

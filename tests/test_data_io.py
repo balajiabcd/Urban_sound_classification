@@ -1,15 +1,12 @@
 import pandas as pd
-from pathlib import Path
-import pytest
+import tempfile
+from src.training import data_io
 
-dio = pytest.importorskip("src.training.data_io", reason="src.training.data_io not found")
+def test_load_archive_dataframes(tmp_path):
+    f1 = tmp_path / "a.csv"
+    pd.DataFrame({"x":[1,2]}).to_csv(f1, index=False)
+    f2 = tmp_path / "b.csv"
+    pd.DataFrame({"x":[3,4]}).to_csv(f2, index=False)
 
-def test_save_and_load_csv_roundtrip(tmp_path: Path):
-    df = pd.DataFrame({"a":[1,2], "b":[3,4]})
-    p = tmp_path / "x.csv"
-    assert hasattr(dio, "save_csv"), "data_io.save_csv is missing"
-    assert hasattr(dio, "load_csv"), "data_io.load_csv is missing"
-    dio.save_csv(df, p)
-    assert p.exists()
-    df2 = dio.load_csv(p)
-    pd.testing.assert_frame_equal(df, df2)
+    df = data_io.load_archive_dataframes(str(tmp_path))
+    assert len(df) == 4
