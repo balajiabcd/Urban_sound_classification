@@ -34,7 +34,7 @@ def test_split_and_encode(tmp_path):
     assert set(y_tr) | set(y_va) | set(y_te) == {"dog", "cat"}
 
 def test_main_runs(tmp_path):
-    folder = make_dummy_df(tmp_path, n_per_class=6)
+    folder = make_dummy_df(tmp_path, n_per_class=10)
     models_dir = tmp_path / "models"
     reports_dir = tmp_path / "reports"
 
