@@ -24,20 +24,23 @@ def predict_sound(path):
     y_pred_label = le.inverse_transform(y_pred)
     return y_pred_label[0]
 
+def check_file(filename):
+    data = pd.read_csv("sample_data/UrbanSound8K.csv")
+    class_by_file_name = data.set_index("slice_file_name")["class"].to_dict()
+
+    if filename in class_by_file_name:
+        actural_label = "we have trained on this audio file. The actual sound is: "  + class_by_file_name[filename]
+    else:
+        actural_label = "This is a new audio file. We don't have actual label"
+    
+    return actural_label
+
 if __name__ == "__main__":
     path = 'sample_data/fold2/7383-3-0-1.wav'
     y_pred_label = predict_sound(path)
     filename = os.path.basename(path)
 
-    data = pd.read_csv("sample_data/UrbanSound8K.csv")
-    class_by_file_name = data.set_index("slice_file_name")["class"].to_dict()
-
-    if filename in class_by_file_name:
-        actural_label = class_by_file_name[filename]
-        print( "we have trained on this audio file. The actual sound is: ",actural_label)
-    else:
-        actural_label = "This is a new audio file. We don't have actual label"
-        print(actural_label) 
-
+    actural_label = check_file(filename) 
+    print(actural_label)
     print("The prediction for this audio file is: ", y_pred_label)
 
