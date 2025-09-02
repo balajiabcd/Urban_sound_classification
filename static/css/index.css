@@ -1,32 +1,156 @@
+/* ====== Bright, lively look for the landing page ====== */
+:root{
+  --bg-top: #f7fbff;
+  --bg-bottom: #eaf4ff;
+  --card-bg: #ffffffee;
+  --text: #0f172a;         /* slate-900 */
+  --muted: #4b5563;        /* gray-600 */
+  --accent: #2563eb;       /* blue-600 */
+  --accent-2: #9333ea;     /* purple-600 */
+  --ring: #60a5fa;         /* blue-400 */
+  --success: #22c55e;      /* green-500 */
+  --border: #e5e7eb;       /* gray-200 */
+}
+
 * { box-sizing: border-box; }
-body {
-  margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
-  background: #0b0f14; color: #e6edf3;
+html, body { height: 100%; }
+
+body{
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, Arial;
+  color: var(--text);
+  background: linear-gradient(135deg, var(--bg-top), var(--bg-bottom));
+  background-attachment: fixed;
 }
-.container {
-  max-width: 760px; margin: 48px auto; padding: 0 16px;
+
+/* Container */
+.container{
+  max-width: 980px;
+  margin: 56px auto;
+  padding: 0 18px;
 }
-.hero { margin-bottom: 24px; }
-h1 { font-size: 2rem; margin: 0 0 8px; }
-.lead { color: #9db1c7; line-height: 1.6; }
-.card {
-  background: #10161d; border: 1px solid #1e2936; border-radius: 16px;
-  padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+
+/* Hero */
+.hero{
+  text-align: center;
+  margin-bottom: 28px;
+  padding: 18px 8px;
 }
-h2 { margin-top: 0; }
-.upload-form {
-  display: flex; gap: 12px; align-items: center; margin: 12px 0;
+.hero h1{
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  margin: 0 0 8px;
+  /* subtle gradient text for extra vibe */
+  background: linear-gradient(60deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
-input[type="file"] {
-  flex: 1; background: #0b0f14; color: #e6edf3; border: 1px dashed #2b3a49; padding: 10px; border-radius: 12px;
+.lead{
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 1.05rem;
 }
-button {
-  padding: 10px 16px; border-radius: 12px; border: 1px solid #1e2936; cursor: pointer;
-  background: #1a7f64; color: white; font-weight: 600;
+
+/* Cards */
+.card{
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+  margin: 16px 0;
+  box-shadow:
+    0 10px 25px rgba(37, 99, 235, 0.08),
+    0 2px 8px rgba(0,0,0,0.03);
+  transition: transform .18s ease, box-shadow .18s ease;
 }
-button:hover { filter: brightness(1.05); }
-.flash {
-  background: #12222b; border: 1px solid #1e3a4b; padding: 12px 16px; border-radius: 12px; margin: 16px 0;
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 32px rgba(37, 99, 235, 0.12),
+    0 4px 12px rgba(0,0,0,0.06);
 }
-.hint { color: #8aa0b5; font-size: 0.95rem; }
-footer { margin-top: 32px; color: #6d7f92; font-size: 0.9rem; }
+.card h2{
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+}
+
+/* Lists inside cards */
+.card ul{
+  margin: 8px 0 0 20px;
+  color: var(--text);
+}
+.card li{ margin: 6px 0; }
+
+/* Upload form */
+.upload-form{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 10px;
+}
+input[type="file"]{
+  flex: 1 1 320px;
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  background: #fafcff;
+  color: var(--muted);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+input[type="file"]:focus{
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 6px rgba(96,165,250,0.18);
+}
+
+/* Buttons — bold gradient + glow on hover */
+button{
+  appearance: none;
+  border: 0;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow:
+    0 8px 18px rgba(37, 99, 235, 0.25),
+    inset 0 0 0 0 rgba(255,255,255,0);
+  transition: transform .15s ease, box-shadow .2s ease, filter .15s ease;
+}
+button:hover{
+  filter: brightness(1.06);
+  box-shadow:
+    0 10px 22px rgba(37, 99, 235, 0.35),
+    0 0 0 4px rgba(96,165,250,0.18) inset;
+}
+button:active{
+  transform: translateY(1px) scale(0.995);
+}
+
+/* Flash messages */
+.flash{
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin: 10px 0;
+}
+
+/* Small text */
+.hint{ color: var(--muted); }
+
+/* Footer */
+footer{
+  margin-top: 30px;
+  text-align: center;
+  color: #6b7280;
+  font-size: .95rem;
+}
+
+/* Motion-sensitivity */
+@media (prefers-reduced-motion: reduce){
+  .card, button{ transition: none; }
+}

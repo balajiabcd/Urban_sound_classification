@@ -1,43 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Urban Sound Classifier — Upload</title>
+  <title>Urban Sound Classification</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
   <main class="container">
+    
+    <!-- Welcome section -->
     <section class="hero">
-      <h1>Urban Sound Classification</h1>
+      <h1>👋 Welcome to Urban Sound Classification</h1>
       <p class="lead">
-        Welcome! Upload a <strong>.wav</strong> audio clip and we’ll process it on the backend.
-        We save your file securely and log basic info (filename, size, timestamp) to a CSV.
-        (Model prediction can be added right after this step.)
+        This web application lets you explore how machine learning can classify everyday urban sounds.
       </p>
     </section>
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <div class="flash">
-          {% for msg in messages %}
-            <p>{{ msg }}</p>
-          {% endfor %}
-        </div>
-      {% endif %}
-    {% endwith %}
-
+    <!-- Project description -->
     <section class="card">
-      <h2>Upload your .wav file</h2>
+      <h2>About this Project</h2>
+      <p>
+        The goal of this project is to automatically recognize different types of sounds 
+        recorded in urban environments. Using audio features like MFCCs and machine learning 
+        models, the system can identify sound events such as car horns, sirens, dog barks, 
+        drilling, and many others.
+      </p>
+    </section>
+
+    <!-- What you can do -->
+    <section class="card">
+      <h2>What You Can Do Here</h2>
+      <ul>
+        <li>🎧 Upload a <strong>.wav</strong> file of any short audio clip.</li>
+        <li>🤖 The system will analyze the audio and predict its class.</li>
+        <li>📊 You’ll see results along with audio plots for better understanding.</li>
+      </ul>
+    </section>
+
+    <!-- Upload form -->
+    <section class="card">
+      <h2>Upload Your Audio File</h2>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash">
+            {% for msg in messages %}<p>{{ msg }}</p>{% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
       <form action="/" method="post" enctype="multipart/form-data" class="upload-form">
         <input type="file" name="audio" accept=".wav" required />
-        <button type="submit">Upload</button>
+        <button type="submit">Upload & Predict</button>
       </form>
-      <p class="hint">Max size: 50 MB. Only .wav files are accepted.</p>
+      <p class="hint">Only .wav files are accepted (max 50 MB).</p>
     </section>
 
     <footer>
-      <p>© {{ 2025 }} Urban Sound Classification</p>
+      <p>© 2025 Urban Sound Classification</p>
     </footer>
   </main>
 </body>

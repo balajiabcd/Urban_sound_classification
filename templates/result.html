@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prediction Result</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+</head>
+<body>
+  <main class="container">
+    <section class="card result">
+      <h1>Result</h1>
+
+      <p class="meta">
+        {% if filename %}<strong>File:</strong> {{ filename }}{% endif %}
+      </p>
+
+      <div class="player">
+        {% if file_url %}
+          <audio controls src="{{ file_url }}">
+            Your browser does not support the audio element.
+          </audio>
+        {% else %}
+          <p class="hint">Audio preview unavailable.</p>
+        {% endif %}
+      </div>
+
+      <div class="prediction">
+        <span class="badge">Predicted Class</span>
+        <h2 class="label">{{ prediction if prediction else "—" }}</h2>
+        {% if confidence is not none %}
+          <p class="confidence">Confidence: {{ "%.1f"|format(confidence * 100) }}%</p>
+        {% endif %}
+      </div>
+
+      <div class="viz">
+        {% if wave_url %}
+          <figure class="viz-card">
+            <img src="{{ wave_url }}" alt="Waveform plot">
+            <figcaption>Waveform</figcaption>
+          </figure>
+        {% endif %}
+        {% if mel_url %}
+          <figure class="viz-card">
+            <img src="{{ mel_url }}" alt="Mel-spectrogram plot">
+            <figcaption>Mel-Spectrogram</figcaption>
+          </figure>
+        {% endif %}
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="{{ url_for('index') }}">Upload another file</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Urban Sound Classification</p>
+    </footer>
+  </main>
+</body>
+</html>

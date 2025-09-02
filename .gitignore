@@ -13,9 +13,8 @@ build/
 # -----------------------------
 # Jupyter / Notebooks
 # -----------------------------
-.ipynb_checkpoints
+.ipynb_checkpoints/
 *.ipynb~
-.notebooks_cache/
 
 # -----------------------------
 # OS / Editor
@@ -28,29 +27,35 @@ Thumbs.db
 .vscode/
 .idea/
 
-
-
-# ignore archive folders completely
+# -----------------------------
+# Data & Artifacts
+# -----------------------------
+# raw data and extracted features
 archive/
 archive_dataframes/
+data/
+!data/*.md     # allow readme/notes in data/
+uploads/
 
-# model artifacts
+# models (saved artifacts)
 models/
 *.pkl
 *.joblib
 *.h5
 *.onnx
 
-# feature dumps / cache
+# feature dumps
 *.npz
 *.npy
 *.parquet
+*.csv~
+*.tmp.csv
 
 # -----------------------------
 # Reports / Figures
 # -----------------------------
 reports/
-!reports/*.md     # allow documentation
+!reports/*.md  # keep documentation if any
 
 # -----------------------------
 # Logs & outputs
@@ -61,16 +66,16 @@ logs/
 
 # -----------------------------
 # Virtual environments
-# ----------------------------- 
-env_sound_classification/
+# -----------------------------
 .env
 .venv
 venv/
 ENV/
 env.bak/
+env_sound_classification/
 
 # -----------------------------
-# DVC / MLflow / Weights & Biases
+# ML experiment trackers
 # -----------------------------
 *.dvc
 .dvc/
@@ -78,7 +83,7 @@ mlruns/
 wandb/
 
 # -----------------------------
-# Others
+# Archives / backups
 # -----------------------------
 *.zip
 *.tar
