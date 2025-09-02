@@ -1,63 +1,262 @@
-# Monitoring, Profiling And Classification Of Urban Environmental Noise Using Sound Characteristics, KNN Algorithm, Decision Tree, Logistic Regression And Random Forest
+# How to Use This Repository 📘
 
-## INTRODUCTION 
-Noise is an unwanted sound has negative impact upon human activities. And in this work, we have investigated the aspect of urban noise as a factor of environmental pollution and its negative impact upon human activities and tried to classify different types of sounds. In this work we used “UrbanSound8K” dataset from Kaggle.   
+👉 For a step-by-step quick start guide, please check
+[**how_to_use_this_repo.md**](how_to_use_this_repo.md).
 
-## DATA SET
-This dataset consists of many audio clips with different sizes (in terms of time). Data contains a total of 10 different types (categories) of noises. All these audio files are recorded in different environments of urban regions.  
+------------------------------------------------------------------------
 
-https://www.kaggle.com/code/prabhavsingh/urbansound8k-classification
+# 📂 Repository Structure
 
-## ANALYSIS 
-1.	The investigation and profiling of urban noise using selected features.  
-2.	The selected features are used to perform noise classification using KNN (K-Nearest Neighbors), Random Forest, Decision Tree, Logistic Regression.  
-3.	Evaluation of the results by employing noise samples from a public database.  
-4.	Comparison between the optimal machine learning algorithm
-   
-## EXISTING WORK SHORTCOMINGS
-Hyperparameter Tuning: The research paper used an algorithm that has been configured to allow from 1 to 3 neighbours. Comparison to Baselines: The research paper did not establish a baseline on its performance against other relevant algorithms to demonstrate superiority far more convincing. Evaluation Metrics: The choice of evaluation metrics was limited to only Euclidean, Chebyshev and cosine   
+    notebooks
+    sample_data
+      ├─ fold1
+      │   ├─ 7061-6-0-0.wav
+      │   ├─ 7383-3-0-0.wav
+      │   └─ 7383-3-0-1.wav
+      ├─ fold2
+      └─ UrbanSound8K.csv
+    src
+      ├─ extract
+      ├─ training
+      ├─ README_src.md
+      └─ __init__.py
+    static
+      ├─ css
+      ├─ figures
+      ├─ images/images
+      ├─ web_app_screenshots
+      └─ metrics.csv
+    templates
+    tests
+    .gitignore
+    ML_Project_Report.docx
+    ML_Project_Report.pdf
+    README.md
+    app.py
+    hell.md
+    how_to_use_this_repo.md
+    info_UrbanSound8K.docx
+    main.py
+    pytest.ini
+    requirements.txt
 
-## CONTRIBUTIONS:  
-Here in this work, we compared multiple machine learning classification models with respect to accuracy levels of predictions. These machine learning models are,   
+------------------------------------------------------------------------
 
-1.	Linear Regression model
-2.	Decision Tree model
-3.	Random Forest model
-4.	KNN classification model
-   
- 	And for KNN classification model we have evaluated efficiencies for different KNN models, which are formed by selecting number of neighbors ranging from 1 to 9 and using distance metrics Chebyshev distance, Hamming distance, Cosine distance, Euclidean distance and Manhattan distance. Total of 45 KNN models were evaluated, and the best result was considered.  
+# 🎶 Urban Sound Classification -- Project Report
 
-## PROCESS
-First, in this work, mfcc features were extracted from the audio files present in the chosen data set. Total of 40 features were extracted from each default frame using “librosa” library mfcc feature extraction method. Single feature was calculated for each feature, by averaging out all the corresponding features from all the frames of audio clip. Hence, for each audio file 40 features were generated.
-This data was combined into a data frame, where each column represents one feature. Next steps are as follow,  
-1.	Data Preprocessing
-2.	PCA
-3.	Model preparation, Training and Testing
-4.	Comparison of results
+## 1. Introduction  
 
-## ELBOW METHOD
-![PCA](https://github.com/balajiabcd/Urban_sound_classification/blob/main/static/images/PCA.jpg)  
-After the preprocessing, to reduce correlated columns from the data, PCA dimensionality reduction method was implemented in this work. This feature selection using Principal Component Analysis (PCA) calculates the explained variance ratio for different numbers of components (ranging from 1 to 40) and plots the results in an "Elbow Method" diagram. The elbow point on the plot helps identify the optimal number of components to retain for reducing the dataset's dimensionality while preserving relevant information. In this work, 20 components were chosen.
-KNN MODEL METRICS EVALUATION
- 
-![Knn_table](https://github.com/balajiabcd/Urban_sound_classification/blob/main/static/images/knn_model_evaluation.png)  
+Urban environments are filled with a wide range of sounds — from **natural sounds** such as birds chirping and children playing, to **man-made noises** like car horns, construction drilling, or ambulance sirens. These sounds carry important contextual information but can also contribute to **noise pollution**, which negatively impacts human health and well-being.  
 
-In this evaluation of the metrices, the percentage results of Cosine proved to be the appropriate metrics which is essential to provide a comprehensive assessment of the model's effectiveness. And for KNN, we get the maximum accuracy when the number of neighbours is 1, however we concluded that it could be because of overfitting of the dataset. The maximum efficiency was obtained when the number of neighbours is 3, with an accuracy rate of 91.76% which is in decreasing order with increase in number of neighbours.  
+The goal of this project is to **automatically classify environmental sounds** into meaningful categories using machine learning techniques. By analyzing short audio clips, we can build models that distinguish between everyday sounds such as:  
 
-## EVALUATION USING DIFFERENT ALGORTHMS 
-1.	Accuracy for Decision tree = 11.22%
-2.	Accuracy Logistic regression = 54.04%
-3.	Accuracy for Random Forest (100) = 90.61%
-   
-Here, random forest gave out a higher percentage score greater than the algorithms tested other than KNN model, so we selected it to be compared with KNN model when the number of neighbours is 3.  
+- 🚨 Sirens (emergency vehicles)  
+- 🐶 Dog barks  
+- 🚗 Car horns and engine idling  
+- 🔧 Drilling, jackhammers, and construction noise  
+- 🎵 Children playing, street music  
 
-## FINAL EVALUATION COMPARISON 
-This is a Confusion matrix for 3-NN classification model with cosine metrics in comparison with Random Forest Model. KNN model achieved an accuracy of 91.76%, on the other hand, Random Forest Model achieved an accuracy of 90.61%.   
+This classification task is not only an academic challenge but also has **practical applications**:  
+- **Smart cities** → monitoring noise levels and identifying sound events.  
+- **Surveillance systems** → automatic detection of abnormal or dangerous sounds.  
+- **Assistive technology** → helping people with hearing impairments recognize environmental cues.  
+- **Urban planning & policy** → measuring and mitigating the impact of noise pollution.  
 
-![heatmap](https://github.com/balajiabcd/Urban_sound_classification/blob/main/static/images/heatmap.jpg)
-
-We could conclude that based on the dataset, the matrices and the algorithm used in this machine learning project and the random forest model used as the baseline in comparison, KNN model proved to be much more efficient in terms of accuracy.
+In this project, we use the **UrbanSound8K dataset** and design a **complete pipeline**:  
+1. Extracting acoustic features (MFCCs, spectral descriptors).  
+2. Preprocessing with scaling and PCA.  
+3. Training multiple ML classifiers (KNN, Random Forest, Decision Trees, Logistic Regression).  
+4. Evaluating models on standard metrics.  
+5. Deploying the best pipeline as a **web application** for interactive predictions.  
 
 
+------------------------------------------------------------------------
+
+## 2. Dataset – UrbanSound8K  
+
+The **UrbanSound8K dataset** is a widely used benchmark for environmental sound classification. It contains **8,732 labeled audio clips**, each up to 4 seconds long, organized into 10 different folds for cross-validation. The dataset covers **10 diverse classes of urban sounds**, such as air conditioners, car horns, children playing, dog barks, drilling, engine idling, gunshots, jackhammers, sirens, and street music.  
+
+Each clip is stored as a `.wav` file, while a **metadata CSV file (`UrbanSound8K.csv`)** provides labels and additional information such as file name, fold number, and class. The fold structure allows standardized **cross-validation**, making it easy to compare results across different models and experiments. This dataset captures the **acoustic diversity and challenges of real-world environments**, including background noise, overlapping sounds, and varying recording conditions, making it ideal for testing robust classification systems.  
 
 
+The dataset contains **8732 labeled `.wav` files**, organized into **10
+folds** for cross-validation, and a metadata file (`UrbanSound8K.csv`).
+
+### Example Folder Structure
+
+    archive/
+    ├─ fold1/
+    ├─ fold2/
+    ...
+    ├─ fold10/
+    └─ UrbanSound8K.csv
+
+------------------------------------------------------------------------
+
+## 3. Methodology
+
+### 🔹 Step 1 – Feature Extraction  
+
+-   Extracted **MFCCs**, Spectral Centroid, Rolloff, Bandwidth,
+    Zero-Crossing Rate.\
+-   Features were aggregated and stored as CSVs for training.
+
+Feature extraction transforms raw audio signals into meaningful numerical representations. Using **Librosa**, we computed MFCCs, spectral features, and zero-crossing rates. These features capture both frequency and temporal characteristics, enabling machine learning models to effectively distinguish different categories of urban sounds.  
+
+📊 **Feature Representation (PCA plot):**\
+![PCA Visualization](static/images/images/PCA.jpg)
+
+------------------------------------------------------------------------
+
+### 🔹 Step 2 -- Preprocessing
+
+-   **StandardScaler** → ensures features have mean = 0, std = 1.\
+-   **PCA** → dimensionality reduction while retaining variance.
+
+Preprocessing ensures that extracted features are normalized and optimized for learning. We applied **StandardScaler** to standardize distributions and **PCA** to reduce dimensionality while retaining variance. This step minimizes noise, avoids redundancy, and prepares consistent feature sets for robust training and evaluation.  
+
+📈 **PCA Elbow Plot (explained variance):**\
+![PCA Elbow](static/figures/pca_elbow.png)
+
+------------------------------------------------------------------------
+
+### 🔹 Step 3 -- Model Training
+
+-   Evaluated multiple algorithms:
+    -   KNN (different distance metrics)\
+    -   Random Forest\
+    -   Decision Tree\
+    -   Logistic Regression  
+
+    Multiple machine learning models were trained, including **KNN, Random Forest, Decision Tree, and Logistic Regression**. Each model was evaluated across different folds using accuracy and F1-score. Hyperparameter variations in KNN (neighbors and distance metrics) allowed deeper exploration of performance trade-offs across algorithms.  
+
+📊 **Model Evaluation Example (KNN):**\
+![KNN Evaluation](static/images/images/knn_model_evaluation.png)
+
+------------------------------------------------------------------------
+
+### 🔹 Step 4 -- Evaluation
+
+-   Metrics: Accuracy, Precision, Recall, F1-score.\
+-   Visualized with confusion matrices and heatmaps.
+
+Model performance was measured using standard metrics: **Accuracy, Precision, Recall, and F1-score**. We visualized confusion matrices and heatmaps to analyze misclassifications and class-level performance. These evaluations provided insights into algorithm strengths, weaknesses, and suitability for classifying complex, real-world environmental sound events.  
+
+📊 **Confusion Matrix:**\
+![Confusion Matrix](static/figures/confusion_matrix.png)
+
+📊 **Heatmap of Class Distributions:**\
+![Heatmap](static/images/images/heatmap.jpg)
+
+------------------------------------------------------------------------
+
+### 🔹 Step 5 -- Deployment
+
+-   Developed a **Flask web app** where users can upload `.wav` files
+    and get predictions in real time.
+
+    The complete pipeline was deployed into a **Flask web application**. Users can upload `.wav` files, which are processed in real time through feature extraction, PCA transformation, and trained classifiers. Predictions are displayed with confidence scores, enabling practical, interactive urban sound classification.  
+
+📸 **Web App -- Home Page:**\  
+
+The home page provides a clean interface where users are welcomed and guided to upload their `.wav` audio files. It explains the purpose of the application and initiates the process of classifying urban environmental sounds.  
+![Home Page](static/web_app_screenshots/home_page.png)
+
+📸 **Web App -- Results Page:**\  
+
+After uploading an audio file, the results page displays the predicted sound category along with its confidence score. This interactive output allows users to quickly interpret the classification and validate the system’s performance on real-world audio samples.  
+![Results Page](static/web_app_screenshots/results_page.png)
+
+------------------------------------------------------------------------
+
+## 4. Results
+
+The evaluation revealed that **KNN models consistently outperformed other algorithms**, particularly when using cosine, Euclidean, and Manhattan distance metrics with `k=1`. These models achieved validation F1-scores above 0.92, demonstrating their strong ability to capture acoustic similarities between sound classes. In contrast, Random Forest and Logistic Regression produced competitive results but fell short of the top-performing KNN models, while Decision Trees and Hamming-based KNN variations performed poorly.  
+
+Overall, the results highlight the importance of feature scaling, PCA, and careful metric selection in classification performance. The best model, **KNN with cosine distance (k=1)**, achieved an F1-score of **0.932**, while the weakest configuration, **KNN with Hamming distance (k=9)**, scored only **0.019**. These findings emphasize the significance of choosing the right distance metric for sound classification tasks and demonstrate that simple algorithms, when properly tuned, can outperform more complex models in specific domains.  
+
+From all tested models, here are the **Top 3** and **Weakest 2**
+performers:  
+
+### ✅ Best Models
+
+  Model                     Accuracy   Precision   Recall   F1-score
+  ------------------------- ---------- ----------- -------- -----------
+  **KNN Cosine (k=1)**      0.936      0.932       0.934    **0.932**
+  **KNN Euclidean (k=1)**   0.931      0.918       0.930    **0.922**
+  **KNN Manhattan (k=1)**   0.930      0.919       0.928    **0.921**
+
+### ❌ Weakest Models
+
+  ------------------------------------------------------------------------
+  Model                    Accuracy    Precision     Recall    F1-score
+  ------------------------ ----------- ------------- --------- -----------
+  **KNN Hamming (k=9)**    0.107       0.011         0.100     **0.019**
+
+  **KNN Cosine (k=1)**     0.931       --            --        **0.925
+  (test set)               (test)                              (test)**
+  ------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+## 5. Web Application
+
+The web app provides a simple and interactive interface:\
+1. Upload a `.wav` file.\
+2. Features are extracted and preprocessed.\
+3. Model predicts the **sound class + confidence score**.
+
+To make the system accessible and user-friendly, the trained pipeline was deployed as a **Flask web application**. The app provides an intuitive interface where users can upload `.wav` files directly through the browser. Once uploaded, the file is processed in real time: features are extracted, transformed via PCA and scaling, and then passed through the trained classification model.  
+
+The results are displayed instantly, showing the predicted sound category along with its confidence score. This makes the system not only a research prototype but also a practical tool for real-world applications such as smart city monitoring, environmental noise profiling, and educational demonstrations. The inclusion of a graphical interface significantly lowers the barrier for non-technical users to interact with and benefit from urban sound classification technology.
+
+📸 **User Workflow**:\
+- Upload → Process → Prediction
+
+------------------------------------------------------------------------
+
+## 6. Testing & Reproducibility
+
+-   Comprehensive **pytest test suite** (`/tests`).\
+-   Validates **feature extraction, preprocessing, training, and
+    evaluation**.\
+-   Ensures stability and reproducibility of results.  
+
+To ensure reliability and maintainability, the project includes a comprehensive **pytest-based test suite** covering all major components of the pipeline. Tests validate feature extraction, preprocessing transformations, model training, evaluation, and prediction outputs, ensuring each stage functions as expected. By enforcing reproducibility, the testing framework guarantees that results remain consistent across environments and future code updates. This not only strengthens confidence in the system’s robustness but also supports collaborative development and long-term scalability.  
+
+------------------------------------------------------------------------
+
+## 7. Dependencies
+
+Core dependencies (see `requirements.txt`): - numpy (≤1.24.4 for Numba
+compatibility)\
+- pandas\
+- librosa\
+- scikit-learn\
+- matplotlib, seaborn\
+- joblib, tqdm, pyyaml
+
+------------------------------------------------------------------------
+
+## 8. Future Work
+
+-   Extend to **deep learning (CNNs on spectrograms)**.\
+-   Integrate with **edge devices** for real-time sound monitoring.\
+-   Add **data augmentation** (noise injection, pitch/time shifting).\
+-   Deploy as a **cloud API** (AWS/GCP/Azure).
+
+------------------------------------------------------------------------
+
+## 9. Acknowledgements
+
+-   [UrbanSound8K
+    dataset](https://urbansounddataset.weebly.com/urbansound8k.html)\
+-   [Librosa](https://librosa.org/) for feature extraction\
+-   [Scikit-learn](https://scikit-learn.org/) for ML pipelines
+
+------------------------------------------------------------------------
+
+✨ This repository demonstrates a **complete end-to-end Urban Sound
+Classification pipeline**:\
+from **raw audio → features → ML models → evaluation → web app
+deployment**.
