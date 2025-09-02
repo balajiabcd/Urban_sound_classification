@@ -52,12 +52,6 @@ models/
 *.tmp.csv
 
 # -----------------------------
-# Reports / Figures
-# -----------------------------
-reports/
-!reports/*.md  # keep documentation if any
-
-# -----------------------------
 # Logs & outputs
 # -----------------------------
 logs/
@@ -88,3 +82,11 @@ wandb/
 *.zip
 *.tar
 *.gz
+
+# -----------------------------
+# user_inputs
+# -----------------------------
+static/plots/
+uploads/
+
+
