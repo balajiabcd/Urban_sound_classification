@@ -189,26 +189,27 @@ After uploading an audio file, the results page displays the predicted sound cat
 
 ## 4. Results
 
-The evaluation revealed that **KNN models consistently outperformed other algorithms**, particularly when using cosine, Euclidean, and Manhattan distance metrics with `k=1`. These models achieved validation F1-scores above 0.92, demonstrating their strong ability to capture acoustic similarities between sound classes. In contrast, Random Forest and Logistic Regression produced competitive results but fell short of the top-performing KNN models, while Decision Trees and Hamming-based KNN variations performed poorly.  
+The evaluation revealed that **KNN models consistently outperformed other algorithms**, particularly when using cosine and Euclidean distance metrics with moderate `k` values. These models achieved validation F1-scores close to or above 0.90, demonstrating their strong ability to capture acoustic similarities between sound classes. In contrast, Random Forest and Logistic Regression produced competitive results but fell short of the top-performing KNN models, while Decision Trees and Hamming-based KNN variations performed poorly.  
 
-Overall, the results highlight the importance of feature scaling, PCA, and careful metric selection in classification performance. The best model, **KNN with cosine distance (k=1)**, achieved an F1-score of **0.932**, while the weakest configuration, **KNN with Hamming distance (k=9)**, scored only **0.019**. These findings emphasize the significance of choosing the right distance metric for sound classification tasks and demonstrate that simple algorithms, when properly tuned, can outperform more complex models in specific domains.  
+Overall, the results highlight the importance of feature scaling, PCA, and careful metric selection in classification performance. The best model, **KNN with cosine distance (k=3)**, achieved an F1-score of **0.906**, while the weakest configuration, **KNN with Hamming distance (k=9)**, scored only **0.019**. These findings emphasize the significance of choosing the right distance metric and neighborhood size for sound classification tasks and demonstrate that simple algorithms, when properly tuned, can outperform more complex models in specific domains.  
 
 From all tested models, here are the **Top 3** and **Weakest 2** performers:  
 
+
 ### ✅ Best Models
 
-| Model                  | Accuracy | Precision | Recall | F1-score |
-|------------------------|----------|-----------|--------|----------|
-| **KNN Cosine (k=1)**   | 0.936    | 0.932     | 0.934  | **0.932** |
-| **KNN Euclidean (k=1)**| 0.931    | 0.918     | 0.930  | **0.922** |
-| **KNN Manhattan (k=1)**| 0.930    | 0.919     | 0.928  | **0.921** |
+| Model                   | Accuracy | Precision | Recall | F1-score |
+|-------------------------|----------|-----------|--------|----------|
+| **KNN Cosine (k=3)**    | 0.911    | 0.901     | 0.913  | **0.906** |
+| **KNN Euclidean (k=3)** | 0.904    | 0.893     | 0.902  | **0.896** |
+| **KNN Cosine (k=4)**    | 0.899    | 0.892     | 0.900  | **0.894** |
 
 ### ❌ Weakest Models
 
-| Model                  | Accuracy | Precision | Recall | F1-score |
-|------------------------|----------|-----------|--------|----------|
-| **KNN Hamming (k=9)**  | 0.107    | 0.011     | 0.100  | **0.019** |
-| **KNN Cosine (k=1)** (test set) | 0.931 (test) | – | – | **0.925 (test)** |
+| Model                              | Accuracy | Precision | Recall | F1-score |
+|------------------------------------|----------|-----------|--------|----------|
+| **KNN Hamming (k=9)**              | 0.107    | 0.011     | 0.100  | **0.019** |
+| **KNN Cosine (k=3)** *(test set)*  | 0.898 (test) | – | – | **0.891 (test)** |
 
 
 ------------------------------------------------------------------------

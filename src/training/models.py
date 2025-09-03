@@ -7,7 +7,7 @@ def build_candidates(seed=42):
     models = {}
     # KNN sweeps
     for metric in ["euclidean","manhattan","chebyshev","cosine","hamming"]:
-        for k in range(1,10):
+        for k in range(3,10):
             name = f"knn_{metric}_k{k}"
             models[name] = KNeighborsClassifier(n_neighbors=k, metric=metric)
     # Tree / LR / RF
