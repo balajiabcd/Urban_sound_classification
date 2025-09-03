@@ -68,7 +68,40 @@ python src/training/train.py --archive_df_dir archive_dataframes --target class
 
 ------------------------------------------------------------------------
 
-## 🌐 5. Run the app
+## 🔹 5. Optional: Generate Training & Evaluation Plots
+
+If you want to regenerate the visualizations (training comparisons, KNN
+analysis, evaluation metrics), we provide a helper script.
+
+1.  Make sure you have already trained models and that
+    `static/metrics.csv` exists.
+2.  From the **root of the repo**, run:
+
+``` bash
+cd D:\Github_work\Urban_sound_classification
+python static/training_results_plots/make_training_plots.py
+```
+
+3.  The plots will be saved automatically into:
+
+```{=html}
+<!-- -->
+```
+    static/training_results_plots/
+        ├─ bar_best5_worst5.png
+        ├─ line_knn_neighbors_f1.png
+        ├─ bar_summary_best3_worst2.png
+        ├─ eval_best_model_bars.png
+        ├─ eval_precision_recall_scatter.png
+        └─ eval_f1_hist.png
+
+These images are referenced inside the main `README.md` file to
+illustrate model training and evaluation results.
+
+
+------------------------------------------------------------------------
+
+## 🌐 6. Run the app
 
 After training is done, start the web app:
 

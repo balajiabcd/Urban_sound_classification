@@ -1,7 +1,7 @@
 # How to Use This Repository 📘
 
 👉 For a step-by-step quick start guide, please check
-[**how_to_use_this_repo.md**](how_to_use_this_repo.md).
+[**how_to_use_this_repo.md**](https://github.com/balajiabcd/Urban_sound_classification/blob/main/how_to_use_this_repo.md).
 
 ------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@
 
 ------------------------------------------------------------------------
 
-# 🎶 Urban Sound Classification -- Project Report
+# 🎶 Urban Sound Classification 
 
 ## 1. Introduction  
 
@@ -190,27 +190,23 @@ The evaluation revealed that **KNN models consistently outperformed other algori
 
 Overall, the results highlight the importance of feature scaling, PCA, and careful metric selection in classification performance. The best model, **KNN with cosine distance (k=1)**, achieved an F1-score of **0.932**, while the weakest configuration, **KNN with Hamming distance (k=9)**, scored only **0.019**. These findings emphasize the significance of choosing the right distance metric for sound classification tasks and demonstrate that simple algorithms, when properly tuned, can outperform more complex models in specific domains.  
 
-From all tested models, here are the **Top 3** and **Weakest 2**
-performers:  
+From all tested models, here are the **Top 3** and **Weakest 2** performers:  
 
 ### ✅ Best Models
 
-  Model                     Accuracy   Precision   Recall   F1-score
-  ------------------------- ---------- ----------- -------- -----------
-  **KNN Cosine (k=1)**      0.936      0.932       0.934    **0.932**
-  **KNN Euclidean (k=1)**   0.931      0.918       0.930    **0.922**
-  **KNN Manhattan (k=1)**   0.930      0.919       0.928    **0.921**
+| Model                  | Accuracy | Precision | Recall | F1-score |
+|------------------------|----------|-----------|--------|----------|
+| **KNN Cosine (k=1)**   | 0.936    | 0.932     | 0.934  | **0.932** |
+| **KNN Euclidean (k=1)**| 0.931    | 0.918     | 0.930  | **0.922** |
+| **KNN Manhattan (k=1)**| 0.930    | 0.919     | 0.928  | **0.921** |
 
 ### ❌ Weakest Models
 
-  ------------------------------------------------------------------------
-  Model                    Accuracy    Precision     Recall    F1-score
-  ------------------------ ----------- ------------- --------- -----------
-  **KNN Hamming (k=9)**    0.107       0.011         0.100     **0.019**
+| Model                  | Accuracy | Precision | Recall | F1-score |
+|------------------------|----------|-----------|--------|----------|
+| **KNN Hamming (k=9)**  | 0.107    | 0.011     | 0.100  | **0.019** |
+| **KNN Cosine (k=1)** (test set) | 0.931 (test) | – | – | **0.925 (test)** |
 
-  **KNN Cosine (k=1)**     0.931       --            --        **0.925
-  (test set)               (test)                              (test)**
-  ------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
 
