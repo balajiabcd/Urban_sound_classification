@@ -1,9 +1,9 @@
 # How to Use This Repository 📘
 
-👉 For a step-by-step quick start guide, please check
+👉 For a step-by-step quick start guide, please ctr + click 
 [**how_to_use_this_repo.md**](https://github.com/balajiabcd/Urban_sound_classification/blob/main/project_reports/how_to_use_this_repo.md).  
   
-👉 For a video version of project demo, please check
+👉 For a video version of project demo, please ctr + click 
 [**project_demo**](https://www.youtube.com/watch?v=_YQ5DEkcp_Y).
 
 ------------------------------------------------------------------------
