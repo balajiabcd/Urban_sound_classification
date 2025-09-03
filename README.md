@@ -120,33 +120,48 @@ Preprocessing ensures that extracted features are normalized and optimized for l
 
 ------------------------------------------------------------------------
 
-### 🔹 Step 3 -- Model Training
+### 🔹 Step 3 – Model Training  
 
--   Evaluated multiple algorithms:
-    -   KNN (different distance metrics)\
-    -   Random Forest\
-    -   Decision Tree\
-    -   Logistic Regression  
+Multiple machine learning models were trained, including **KNN, Random Forest, Decision Tree, and Logistic Regression**. Each model was evaluated across different folds using accuracy and F1-score. Hyperparameter variations in KNN (neighbors and distance metrics) allowed deeper exploration of performance trade-offs across algorithms.  
 
-    Multiple machine learning models were trained, including **KNN, Random Forest, Decision Tree, and Logistic Regression**. Each model was evaluated across different folds using accuracy and F1-score. Hyperparameter variations in KNN (neighbors and distance metrics) allowed deeper exploration of performance trade-offs across algorithms.  
+📊 **Top 5 & Bottom 5 models (F1-score):**  
+<img src="static/training_results_plots/bar_best5_worst5.png" alt="Top & Bottom Models" width="500"/>      
+This chart highlights the strongest and weakest models based on validation F1-scores, showing clear performance differences across algorithms.  
 
-📊 **Model Evaluation Example (KNN):**\
-![KNN Evaluation](static/images/images/knn_model_evaluation.png)
+📊 **KNN: neighbors vs F1-score (by distance metric):**  
+<img src="static/training_results_plots/line_knn_neighbors_f1.png" alt="KNN Performance" width="500"/>  
+This line plot illustrates how KNN performance changes with the number of neighbors (`k`) across different distance metrics, revealing that cosine and Euclidean metrics consistently outperform others.  
+
+📊 **Summary: Best 3 vs Worst 2 models:**  
+<img src="static/training_results_plots/bar_summary_best3_worst2.png" alt="Best3 vs Worst2" width="500"/>  
+This summary compares the top three models with the bottom two, reinforcing why KNN with cosine distance emerged as the best choice while Hamming-based KNN performed poorly.  
+
+✅ **In summary**, the plots demonstrate that while several models achieved competitive results, **KNN with cosine, Euclidean, and Manhattan metrics consistently led performance**, confirming its effectiveness for urban sound classification. Conversely, models using Hamming distance were highly ineffective, highlighting the importance of metric selection in KNN.  
+
 
 ------------------------------------------------------------------------
 
-### 🔹 Step 4 -- Evaluation
+### 🔹 Step 4 – Evaluation  
 
--   Metrics: Accuracy, Precision, Recall, F1-score.\
--   Visualized with confusion matrices and heatmaps.
-
-Model performance was measured using standard metrics: **Accuracy, Precision, Recall, and F1-score**. We visualized confusion matrices and heatmaps to analyze misclassifications and class-level performance. These evaluations provided insights into algorithm strengths, weaknesses, and suitability for classifying complex, real-world environmental sound events.  
+Model performance was assessed using **Accuracy, Precision, Recall, and F1-score**. Beyond raw numbers, we visualized results to better understand strengths and weaknesses of the trained classifiers.Model performance was measured using standard metrics: **Accuracy, Precision, Recall, and F1-score**. We visualized confusion matrices and heatmaps to analyze misclassifications and class-level performance. These evaluations provided insights into algorithm strengths, weaknesses, and suitability for classifying complex, real-world environmental sound events.  
 
 📊 **Confusion Matrix:**\
-![Confusion Matrix](static/figures/confusion_matrix.png)
+<img src="static/figures/confusion_matrix.png" alt="Confusion Matrix" width="500"/> 
 
-📊 **Heatmap of Class Distributions:**\
-![Heatmap](static/images/images/heatmap.jpg)
+📊 **Best Model Metrics (Accuracy, Precision, Recall, F1-score):**  
+<img src="static/training_results_plots/eval_best_model_bars.png" alt="Best Model Metrics" width="500"/>  
+This bar chart summarizes the key evaluation metrics for the single best-performing model, giving a clear overview of its balanced performance.  
+
+📊 **Precision vs Recall Scatter (all models, size ∝ F1):**  
+<img src="static/training_results_plots/eval_precision_recall_scatter.png" alt="Precision vs Recall" width="500"/>  
+This scatter plot compares models in terms of Precision and Recall, with bubble sizes representing F1-scores. Top-3 and worst-2 models are annotated to highlight performance extremes.  
+
+📊 **Distribution of F1-Scores across Models:**  
+<img src="static/training_results_plots/eval_f1_hist.png" alt="F1 Histogram" width="500"/>  
+The histogram shows the spread of F1-scores across all models, illustrating that while some models performed well, others lagged significantly.  
+
+✅ **In summary**, these evaluation plots confirm that the **KNN (cosine, Euclidean, Manhattan)** variants consistently lead in performance, while Hamming-based KNN and shallow decision trees underperform. This demonstrates the critical role of metric choice and algorithm selection in environmental sound classification.  
+
 
 ------------------------------------------------------------------------
 
