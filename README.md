@@ -264,8 +264,8 @@ compatibility)\
 
 ## 9. Acknowledgements
 
--   [UrbanSound8Kdataset](https://www.kaggle.com/datasets/chrisfilo/urbansound8k)\
--   [Librosa](https://librosa.org/) for feature extraction\
+-   [UrbanSound8Kdataset](https://librosa.org/) for data collection
+-   [Librosa](https://librosa.org/) for feature extraction
 -   [Scikit-learn](https://scikit-learn.org/) for ML pipelines
 
 ------------------------------------------------------------------------
